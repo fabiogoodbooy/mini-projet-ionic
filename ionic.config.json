@@ -1,0 +1,11 @@
+{
+  "name": "SFad",
+  "integrations": {},
+  "type": "ionic-angular"
+,
+"proxies":[
+  {
+"path" : "/ads",
+"proxyUrl": "http://localhost:9200/ads"
+  }]
+}

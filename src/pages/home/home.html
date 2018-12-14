@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+
+  <ion-title>
+   FSad
+  </ion-title>
+
+  <ion-buttons end>
+    <button ion-button icon-only (click)="pushFilter()">
+      <ion-icon name="options"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+</ion-header>
+
+<ion-content padding class="card-background-page">
+
+  <ion-row text-wrap *ngFor="let ads of adsliste">
+      <ion-card>
+          <img src="{{ads.image}}"/>
+          <div class="card-title">{{ads.price}}</div>
+          <div class="card-subtitle">{{ads.description}}</div>
+        </ion-card>
+</ion-row>
+
+</ion-content>
