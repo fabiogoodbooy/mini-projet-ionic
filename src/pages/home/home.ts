@@ -11,6 +11,7 @@ import { FiltersPage } from '../filters/filters';
 export class HomePage {
 adsliste:any;
 FilterPage :Page ;
+
   constructor(public navCtrl: NavController ,private ads: AdsProvider ) {
     this.ads.allAds().subscribe((adsTabel:any)=>
             {
@@ -23,5 +24,29 @@ FilterPage :Page ;
   pushFilter(){
     this.navCtrl.push(FiltersPage);
   }
+ onSearch(event){
+   console.log(event.target.value);
+ }
+ doRefresh(refresher) {
+  console.log('Begin async operation', refresher);
+  this.ads.allAds().subscribe((adsTabel:any)=>
+  {
+
+      this.adsliste = adsTabel;
+      refresher.complete();
+});
  
+}
+
+doInfinite(infiniteScroll) {
+ 
+  this.ads.allAds().subscribe((adsTabel:any)=>
+  {
+
+      this.adsliste = this.adsliste.concat(adsTabel);
+      infiniteScroll.complete();
+});
+  
+}
+
 }

@@ -1,13 +1,8 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button icon-only menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-
-  <ion-title>
-   FSad
-  </ion-title>
-
+   
+  <ion-searchbar (search)="onSearch($event)">
+</ion-searchbar>
   <ion-buttons end>
     <button ion-button icon-only (click)="pushFilter()">
       <ion-icon name="options"></ion-icon>
@@ -17,7 +12,17 @@
 </ion-header>
 
 <ion-content padding class="card-background-page">
+  
 
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."></ion-refresher-content>
+    </ion-refresher>
+  
+ 
   <ion-row text-wrap *ngFor="let ads of adsliste">
       <ion-card>
           <img src="{{ads.image}}"/>
@@ -25,5 +30,11 @@
           <div class="card-subtitle">{{ads.description}}</div>
         </ion-card>
 </ion-row>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles"
+  loadingText="Loading more data...">
+</ion-infinite-scroll-content>
+</ion-infinite-scroll>
 
 </ion-content>

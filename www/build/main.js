@@ -55,7 +55,6 @@ var LoginPage = /** @class */ (function () {
         this.testLogin();
     };
     LoginPage.prototype.testLogin = function () {
-        //
         for (var _i = 0, _a = this.userList; _i < _a.length; _i++) {
             var user = _a[_i];
             this.id = user._id;
@@ -296,13 +295,32 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.pushFilter = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__filters_filters__["a" /* FiltersPage */]);
     };
+    HomePage.prototype.onSearch = function (event) {
+        console.log(event.target.value);
+    };
+    HomePage.prototype.doRefresh = function (refresher) {
+        var _this = this;
+        console.log('Begin async operation', refresher);
+        this.ads.allAds().subscribe(function (adsTabel) {
+            _this.adsliste = adsTabel;
+            refresher.complete();
+        });
+    };
+    HomePage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        this.ads.allAds().subscribe(function (adsTabel) {
+            _this.adsliste = _this.adsliste.concat(adsTabel);
+            infiniteScroll.complete();
+        });
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/fabio/Desktop/FSad-master-project/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button icon-only menuToggle>\n    <ion-icon name="menu"></ion-icon>\n  </button>\n\n  <ion-title>\n   FSad\n  </ion-title>\n\n  <ion-buttons end>\n    <button ion-button icon-only (click)="pushFilter()">\n      <ion-icon name="options"></ion-icon>\n    </button>\n  </ion-buttons>\n</ion-navbar>\n</ion-header>\n\n<ion-content padding class="card-background-page">\n\n  <ion-row text-wrap *ngFor="let ads of adsliste">\n      <ion-card>\n          <img src="{{ads.image}}"/>\n          <div class="card-title">{{ads.price}}</div>\n          <div class="card-subtitle">{{ads.description}}</div>\n        </ion-card>\n</ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/home/fabio/Desktop/FSad-master-project/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/fabio/Desktop/FSad-master-project/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n   \n  <ion-searchbar (search)="onSearch($event)">\n</ion-searchbar>\n  <ion-buttons end>\n    <button ion-button icon-only (click)="pushFilter()">\n      <ion-icon name="options"></ion-icon>\n    </button>\n  </ion-buttons>\n</ion-navbar>\n</ion-header>\n\n<ion-content padding class="card-background-page">\n  \n\n    <ion-refresher (ionRefresh)="doRefresh($event)">\n      <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="Pull to refresh"\n      refreshingSpinner="circles"\n      refreshingText="Refreshing..."></ion-refresher-content>\n    </ion-refresher>\n  \n \n  <ion-row text-wrap *ngFor="let ads of adsliste">\n      <ion-card>\n          <img src="{{ads.image}}"/>\n          <div class="card-title">{{ads.price}}</div>\n          <div class="card-subtitle">{{ads.description}}</div>\n        </ion-card>\n</ion-row>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n  <ion-infinite-scroll-content loadingSpinner="bubbles"\n  loadingText="Loading more data...">\n</ion-infinite-scroll-content>\n</ion-infinite-scroll>\n\n</ion-content>\n'/*ion-inline-end:"/home/fabio/Desktop/FSad-master-project/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_ads__["a" /* AdsProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_ads__["a" /* AdsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_ads__["a" /* AdsProvider */]) === "function" && _b || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
