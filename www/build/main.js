@@ -317,10 +317,9 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/home/fabio/Desktop/FSad-master-project/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n   \n  <ion-searchbar (search)="onSearch($event)">\n</ion-searchbar>\n  <ion-buttons end>\n    <button ion-button icon-only (click)="pushFilter()">\n      <ion-icon name="options"></ion-icon>\n    </button>\n  </ion-buttons>\n</ion-navbar>\n</ion-header>\n\n<ion-content padding class="card-background-page">\n  \n\n    <ion-refresher (ionRefresh)="doRefresh($event)">\n      <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="Pull to refresh"\n      refreshingSpinner="circles"\n      refreshingText="Refreshing..."></ion-refresher-content>\n    </ion-refresher>\n  \n \n  <ion-row text-wrap *ngFor="let ads of adsliste">\n      <ion-card>\n          <img src="{{ads.image}}"/>\n          <div class="card-title">{{ads.price}}</div>\n          <div class="card-subtitle">{{ads.description}}</div>\n        </ion-card>\n</ion-row>\n\n<ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n  <ion-infinite-scroll-content loadingSpinner="bubbles"\n  loadingText="Loading more data...">\n</ion-infinite-scroll-content>\n</ion-infinite-scroll>\n\n</ion-content>\n'/*ion-inline-end:"/home/fabio/Desktop/FSad-master-project/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_ads__["a" /* AdsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_ads__["a" /* AdsProvider */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_ads__["a" /* AdsProvider */]])
     ], HomePage);
     return HomePage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
